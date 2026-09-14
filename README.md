@@ -1,4 +1,6 @@
-# PaoLab
+# PaoLab Mobile
+
+> Diário pessoal e laboratório de panificação — a versão mobile (Android/iOS) do PaoLab, feita com React Native e Expo, com foco em uma experiência **offline-first** para uso direto na cozinha durante o preparo dos pães.
 
 ## Sobre o app
 
@@ -21,6 +23,9 @@ Com o PaoLab, o usuário consegue comparar fornadas diferentes, identificar padr
 
 ### Funcionalidades adicionais (trabalhos futuros)
 
+- [ ] Conta de usuário (login, cadastro, recuperação de senha)
+- [ ] Perfil do usuário (visualizar e editar)
+- [ ] Tela de Configurações (unidades de medida, notificações, tema visual, sobre o app)
 - [ ] Cálculo automático de sugestão de hidratação com base no clima do dia
 - [ ] Gráficos de evolução (nota média ao longo do tempo, por categoria de pão)
 - [ ] Fotos anexadas a cada experimento (registro visual do miolo/crosta)
@@ -30,18 +35,46 @@ Com o PaoLab, o usuário consegue comparar fornadas diferentes, identificar padr
 
 ## Protótipos de tela
 
-Os protótipos foram desenhados com o [Google Stitch](https://stitch.withgoogle.com/), seguindo a paleta e tipografia definidas no design system do app (tons terrosos, tipografia serifada para títulos). Abaixo está o mapa com as 8 telas principais, cobrindo o fluxo completo de uso e os estados alternativos (vazio, sucesso, erro e confirmação):
+Os protótipos foram feitos em conjunto no **Figma** e no **Google Stitch**: o Stitch foi usado para gerar rapidamente as variações de tela em cima do design system próprio ("Tactile Editorial Craft" — paleta em tons terrosos, tipografia serifada Fraunces para títulos e monoespaçada Jetbrains Mono para medições técnicas), e o Figma para organizar, refinar e publicar o protótipo final.
 
-![Mapa de telas do PaoLab](docs/mapa_de_telas_paolab.png)
+Veja os protótipos interativos nos links abaixo, ou o mapa estático com todas as telas logo a seguir (útil caso os links não estejam acessíveis):
 
-1. **Painel** — visão geral com clima da bancada, estatísticas e experimento favorito
-2. **Novo Experimento** — formulário de cadastro de uma nova fornada
-3. **Sucesso ao Salvar** — feedback de confirmação após o cadastro
-4. **Laboratório** — histórico de experimentos com busca e filtros
-5. **Laboratório (vazio)** — estado inicial, antes do primeiro cadastro
-6. **Detalhes do Experimento** — ficha técnica completa de uma fornada específica
-7. **Confirmar Exclusão** — diálogo de confirmação antes de apagar um registro
-8. **Aviso: Clima Indisponível** — estado de erro quando o sensor de clima falha
+- **Figma:** https://www.figma.com/design/cpvoitQcVrBi2hYD4pNeCO/pao-lab-moblie?node-id=0-1&t=B25dZncB7XvBx49H-1
+- **Stitch (com interação entre as telas):** https://stitch.withgoogle.com/projects/12962388773360608146
+
+**Bloco A — Autenticação**
+
+1. Splash / Boas-vindas — onboarding explicando o app na primeira abertura
+2. Login
+3. Cadastro de Conta
+4. Recuperar Senha
+
+**Bloco B — Fluxo principal**
+
+5. Painel — visão geral com clima da bancada, estatísticas e experimento favorito
+6. Novo Experimento — formulário de cadastro de uma nova fornada
+7. Sucesso ao Salvar — feedback de confirmação após o cadastro
+8. Laboratório — histórico de experimentos com busca e filtros
+9. Laboratório (vazio) — estado inicial, antes do primeiro cadastro
+10. Detalhes do Experimento — ficha técnica completa de uma fornada específica
+11. Confirmar Exclusão — diálogo de confirmação antes de apagar um registro
+12. Aviso: Clima Indisponível — estado de erro quando o sensor de clima falha
+
+**Bloco C — Farinhas e avaliação sensorial**
+
+13. Lista de Farinhas
+14. Cadastro de Farinha
+15. Avaliação Sensorial detalhada (notas de geral, miolo e crosta)
+
+**Bloco D — Perfil e configurações**
+
+16. Ver Perfil
+17. Editar Perfil
+18. Configurações
+19. Unidades de Medida
+20. Notificações
+21. Tema Visual
+22. Sobre o App
 
 ## Modelagem do banco
 
@@ -89,14 +122,15 @@ Conforme o app cresce (ver checklist e sprints abaixo), duas mudanças de modela
 
 Cronograma estimado a partir deste Checkpoint 1, em sprints semanais. As prioridades seguem a checklist de "Funcionalidades básicas" acima; as funcionalidades adicionais só entram depois que o MVP estiver fechado e alinhado aos protótipos.
 
-| Sprint | Semana(s)   | Entregas                                                                                                                                              |
-| ------ | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | Semana 1    | Avaliação sensorial detalhada (tela própria, notas de geral/miolo/crosta) + migração de `avaliacao_json` para tabela `avaliacoes`                     |
-| 2      | Semana 2    | CRUD completo: edição e exclusão de experimentos (telas "Detalhes do Experimento" e "Confirmar Exclusão" já prototipadas)                             |
-| 3      | Semana 3    | Cadastro e seleção de farinhas (marca, % de proteína) e uso no formulário de novo experimento                                                         |
-| 4      | Semanas 4–5 | Redesign da UI para alinhar com os protótipos do Stitch (Painel, Novo Experimento, Laboratório) — maior sprint por envolver todas as telas principais |
-| 5      | Semana 6    | Estados de borda: laboratório vazio, aviso de clima indisponível, tratamento de erros e mensagens de feedback                                         |
-| 6      | Semana 7    | Uma funcionalidade adicional (a definir entre sugestão automática de hidratação por clima ou gráficos de evolução)                                    |
-| 7      | Semana 8    | Testes manuais em dispositivo real/emulador, correções de bugs, revisão final do README e da documentação                                             |
+| Sprint | Semana(s)    | Entregas                                                                                                                                             | Status       |
+| ------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| CP1    | Semana atual | Documentação: README, protótipos, modelagem do banco e este cronograma                                                                               | ✅ Concluído |
+| 1      | Semana 1     | Avaliação sensorial detalhada (tela própria, notas de geral/miolo/crosta) + migração de `avaliacao_json` para tabela `avaliacoes`                    | ⏳ Planejado |
+| 2      | Semana 2     | CRUD completo: edição e exclusão de experimentos (telas "Detalhes do Experimento" e "Confirmar Exclusão" já prototipadas)                            | ⏳ Planejado |
+| 3      | Semana 3     | Cadastro e seleção de farinhas (marca, % de proteína) e uso no formulário de novo experimento                                                        | ⏳ Planejado |
+| 4      | Semanas 4–5  | Redesign da UI para alinhar com os protótipos do Figma (Painel, Novo Experimento, Laboratório) — maior sprint por envolver todas as telas principais | ⏳ Planejado |
+| 5      | Semana 6     | Estados de borda: laboratório vazio, aviso de clima indisponível, tratamento de erros e mensagens de feedback                                        | ⏳ Planejado |
+| 6      | Semana 7     | Uma funcionalidade adicional (a definir entre sugestão automática de hidratação por clima ou gráficos de evolução)                                   | ⏳ Planejado |
+| 7      | Semana 8     | Testes manuais em dispositivo real/emulador, correções de bugs, revisão final do README e da documentação                                            | ⏳ Planejado |
 
 > Cronograma sujeito a ajuste conforme o andamento real do semestre; será revisado a cada checkpoint da disciplina.
