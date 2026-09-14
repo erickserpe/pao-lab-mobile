@@ -1,18 +1,4 @@
-export type CategoriaPao =
-  | 'Sourdough'
-  | 'Ciabatta'
-  | 'Baguette'
-  | 'Focaccia'
-  | 'Brioche'
-  | 'Outro';
-
-export interface Farinha {
-  id: number;
-  nome: string;
-  marca: string;
-  proteina_pct: number;
-  observacoes?: string;
-}
+export type CategoriaPao = 'Sourdough' | 'Ciabatta' | 'Baguette' | 'Focaccia' | 'Brioche' | 'Outro';
 
 export interface ClimaData {
   temperatura: number;

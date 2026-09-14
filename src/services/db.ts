@@ -52,9 +52,7 @@ export const initDatabase = async (): Promise<void> => {
 };
 
 export const getExperimentos = async (): Promise<Experimento[]> => {
-  const rows = await db.getAllAsync<ExperimentoRow>(
-    'SELECT * FROM experimentos ORDER BY id DESC;'
-  );
+  const rows = await db.getAllAsync<ExperimentoRow>('SELECT * FROM experimentos ORDER BY id DESC;');
 
   return rows.map((row) => ({
     id: row.id,
@@ -93,16 +91,11 @@ export const addExperimento = async (exp: ExperimentoInput): Promise<number> => 
       JSON.stringify(exp.avaliacao),
       exp.observacoes || '',
       exp.favorito ? 1 : 0,
-    ]
+    ],
   );
   return result.lastInsertRowId;
 };
 
 export const toggleFavorito = async (id: number, atual: boolean): Promise<void> => {
-  await db.runAsync('UPDATE experimentos SET favorito = ? WHERE id = ?;', [
-    atual ? 0 : 1,
-    id,
-  ]);
+  await db.runAsync('UPDATE experimentos SET favorito = ? WHERE id = ?;', [atual ? 0 : 1, id]);
 };
-
-export default db;

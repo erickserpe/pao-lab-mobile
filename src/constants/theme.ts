@@ -5,8 +5,6 @@ export const COLORS = {
   buttonPrimary: '#633B22',
   border: '#D8CDBB',
   accentSecondary: '#8B5E34',
-  success: '#164A3A',
   weather: '#155E63',
   starRating: '#8A5A00',
-  danger: '#A12A2A',
 };
