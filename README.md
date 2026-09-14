@@ -37,7 +37,7 @@ Com o PaoLab, o usuário consegue comparar fornadas diferentes, identificar padr
 
 Os protótipos foram feitos em conjunto no **Figma** e no **Google Stitch**: o Stitch foi usado para gerar rapidamente as variações de tela em cima do design system próprio ("Tactile Editorial Craft" — paleta em tons terrosos, tipografia serifada Fraunces para títulos e monoespaçada Jetbrains Mono para medições técnicas), e o Figma para organizar, refinar e publicar o protótipo final.
 
-Veja os protótipos interativos nos links abaixo, ou o mapa estático com todas as telas logo a seguir (útil caso os links não estejam acessíveis):
+Veja os protótipos interativos nos links abaixo:
 
 - **Figma:** https://www.figma.com/design/cpvoitQcVrBi2hYD4pNeCO/pao-lab-moblie?node-id=0-1&t=B25dZncB7XvBx49H-1
 - **Stitch (com interação entre as telas):** https://stitch.withgoogle.com/projects/12962388773360608146
