@@ -1,6 +1,4 @@
-# PaoLab Mobile
-
-> Diário pessoal e laboratório de panificação — a versão mobile (Android/iOS) do PaoLab, feita com React Native e Expo, com foco em uma experiência **offline-first** para uso direto na cozinha durante o preparo dos pães.
+# PaoLab
 
 ## Sobre o app
 
@@ -32,80 +30,12 @@ Com o PaoLab, o usuário consegue comparar fornadas diferentes, identificar padr
 
 ## Protótipos de tela
 
-Os protótipos foram desenhados no [Figma](https://figma.com), seguindo a paleta e tipografia definidas no design system do app (tons terrosos, tipografia serifada para títulos).
-
-<!-- TODO: colar aqui o link público de visualização do Figma -->
-
-**Link do Figma:** _a definir_
-
-Abaixo está o mapa com as 8 telas principais, cobrindo o fluxo completo de uso e os estados alternativos (vazio, sucesso, erro e confirmação):
-
-![Mapa de telas do PaoLab](docs/mapa_de_telas_paolab.png)
-
-1. **Painel** — visão geral com clima da bancada, estatísticas e experimento favorito
-2. **Novo Experimento** — formulário de cadastro de uma nova fornada
-3. **Sucesso ao Salvar** — feedback de confirmação após o cadastro
-4. **Laboratório** — histórico de experimentos com busca e filtros
-5. **Laboratório (vazio)** — estado inicial, antes do primeiro cadastro
-6. **Detalhes do Experimento** — ficha técnica completa de uma fornada específica
-7. **Confirmar Exclusão** — diálogo de confirmação antes de apagar um registro
-8. **Aviso: Clima Indisponível** — estado de erro quando o sensor de clima falha
+<!-- TODO: link público do Figma (ou imagem única com o mapa de telas) -->
 
 ## Modelagem do banco
 
-O banco é **local**, implementado com **SQLite** através da biblioteca `expo-sqlite`, já que o app precisa funcionar offline (o padeiro registra fornadas na cozinha, nem sempre com internet disponível). Não há backend remoto nem sincronização em nuvem nesta fase do projeto.
-
-O banco tem duas tabelas relacionais (`farinhas` e `experimentos`). Os dados de **clima** e de **avaliação sensorial** são armazenados como colunas `TEXT` em formato JSON dentro da própria tabela `experimentos`, em vez de tabelas separadas — a decisão foi por simplicidade, já que cada experimento tem exatamente um registro de clima e uma avaliação (relação 1:1), sem necessidade de consultas ou filtros por esses campos isoladamente.
-
-```mermaid
-erDiagram
-    FARINHAS ||--o{ EXPERIMENTOS : "é usada em"
-
-    FARINHAS {
-        int id PK
-        text nome
-        text marca
-        real proteina_pct
-        text observacoes
-    }
-
-    EXPERIMENTOS {
-        int id PK
-        text nome
-        text categoria
-        text data
-        int farinha_id FK
-        int farinha_g
-        int hidratacao_pct
-        real fermentacao_horas
-        real inoculacao_levain_pct
-        text clima_json "JSON: { temperatura, umidade }"
-        text avaliacao_json "JSON: { geral, miolo, crosta }"
-        text observacoes
-        int favorito
-    }
-```
-
-### Evolução planejada
-
-Conforme o app cresce (ver checklist e sprints abaixo), duas mudanças de modelagem estão previstas:
-
-- Extrair `avaliacao_json` para uma tabela própria `avaliacoes` (1:1 com `experimentos`), quando a tela de avaliação sensorial detalhada for implementada — facilita consultas como "experimentos com nota de miolo acima de 4".
-- Permitir múltiplas farinhas por experimento (blends), o que exigiria uma tabela associativa `experimento_farinhas` (N:N) no lugar da FK simples `farinha_id`.
+<!-- TODO: diagrama entidade-relacionamento (Mermaid ou diagrams.net) + explicação de que o banco é local via expo-sqlite -->
 
 ## Planejamento de sprints
 
-Cronograma estimado a partir deste Checkpoint 1, em sprints semanais. As prioridades seguem a checklist de "Funcionalidades básicas" acima; as funcionalidades adicionais só entram depois que o MVP estiver fechado e alinhado aos protótipos.
-
-| Sprint | Semana(s)    | Entregas                                                                                                                                             | Status       |
-| ------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| CP1    | Semana atual | Documentação: README, protótipos, modelagem do banco e este cronograma                                                                               | ✅ Concluído |
-| 1      | Semana 1     | Avaliação sensorial detalhada (tela própria, notas de geral/miolo/crosta) + migração de `avaliacao_json` para tabela `avaliacoes`                    | ⏳ Planejado |
-| 2      | Semana 2     | CRUD completo: edição e exclusão de experimentos (telas "Detalhes do Experimento" e "Confirmar Exclusão" já prototipadas)                            | ⏳ Planejado |
-| 3      | Semana 3     | Cadastro e seleção de farinhas (marca, % de proteína) e uso no formulário de novo experimento                                                        | ⏳ Planejado |
-| 4      | Semanas 4–5  | Redesign da UI para alinhar com os protótipos do Figma (Painel, Novo Experimento, Laboratório) — maior sprint por envolver todas as telas principais | ⏳ Planejado |
-| 5      | Semana 6     | Estados de borda: laboratório vazio, aviso de clima indisponível, tratamento de erros e mensagens de feedback                                        | ⏳ Planejado |
-| 6      | Semana 7     | Uma funcionalidade adicional (a definir entre sugestão automática de hidratação por clima ou gráficos de evolução)                                   | ⏳ Planejado |
-| 7      | Semana 8     | Testes manuais em dispositivo real/emulador, correções de bugs, revisão final do README e da documentação                                            | ⏳ Planejado |
-
-> Cronograma sujeito a ajuste conforme o andamento real do semestre; será revisado a cada checkpoint da disciplina.
+<!-- TODO: cronograma semana a semana até a conclusão do app -->
